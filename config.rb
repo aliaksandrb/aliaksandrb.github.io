@@ -1,3 +1,5 @@
+require 'slim'
+
 ###
 # Blog settings
 ###
@@ -29,20 +31,21 @@ activate :blog do |blog|
   # blog.page_link = "page/{num}"
 end
 
+website_link = 'http://www.example.com'
 set :casper, {
   blog: {
-    url: 'http://www.example.com',
-    name: 'Middleman',
-    description: 'Makes developing websites simple.',
+    url: website_link,
+    name: 'Dreaming Potato',
+    description: 'Tech, Fiction, Travel',
     date_format: '%d %B %Y',
     navigation: true,
     logo: nil # Optional
   },
   author: {
-    name: 'Middleman',
-    bio: nil, # Optional
-    location: nil, # Optional
-    website: nil, # Optional
+    name: 'Aliaksandr Buhayeu',
+    bio: 'Software engineer, Ruby fan & trainer, just a positive guy', # Optional
+    location: 'Minsk, Belarus', # Optional
+    website: website_link, # Optional
     gravatar_email: nil # Optional
   },
   navigation: {
@@ -110,7 +113,7 @@ activate :livereload
 activate :directory_indexes
 
 # Middleman-Syntax - https://github.com/middleman/middleman-syntax
-set :haml, { ugly: true }
+set :haml, { ugly: true, format: :html5 }
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true
 activate :syntax, line_numbers: true
@@ -123,27 +126,27 @@ activate :syntax, line_numbers: true
 # end
 
 set :css_dir, 'stylesheets'
-
 set :js_dir, 'javascripts'
-
 set :images_dir, 'images'
-
 set :partials_dir, 'partials'
 
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
-  # activate :minify_css
+  activate :minify_css
 
   # Minify Javascript on build
-  # activate :minify_javascript
+  activate :minify_javascript
 
   # Enable cache buster
-  # activate :asset_hash
+  activate :asset_hash
 
   # Use relative URLs
   # activate :relative_assets
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+
+  # gzip text files # NOTE! need a test with github pages
+  activate :gzip
 end
