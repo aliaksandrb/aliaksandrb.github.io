@@ -1,9 +1,11 @@
 ---
 title: Welcome to Ghost
+sub_title: Yay! We are going to the moon!
 date: 2013-10-26
 tags: Getting Started
 layout: post
 published: false
+tags: test, me, travel
 ---
 
 You're in! Nice. We've put together a little post to introduce you to the Ghost

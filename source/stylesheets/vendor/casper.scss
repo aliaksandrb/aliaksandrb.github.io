@@ -967,6 +967,15 @@ body:not(.post-template) .post-title {
     color: #9EABB3;
 }
 
+.sub-title {
+  @extend .post-meta;
+  margin: 0 0 1.75rem 0;
+}
+
+.reset-margin {
+  margin: 0;
+}
+
 .author-thumb {
     width: 24px;
     height: 24px;
@@ -1054,11 +1063,13 @@ body:not(.post-template) .post-title {
     margin: 0;
 }
 
+/*
 .post-template .post-date {
     padding: 0;
     margin: 0;
     border: none;
 }
+*/
 
 /* Stop elements, such as img wider than the post content, from
    creating horizontal scroll - slight hack due to imperfections
