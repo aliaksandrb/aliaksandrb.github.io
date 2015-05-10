@@ -32,7 +32,7 @@ activate :blog do |blog|
   # blog.page_link = "page/{num}"
 end
 
-website_link = 'https://github.com/aliaksandrb/dreamingpotato.com'
+website_link = 'https://aliaksandrb.github.io/dreamingpotato.com'
 author_name = 'Aliaksandr Buhayeu'
 set :casper, {
   blog: {
