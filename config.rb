@@ -32,7 +32,7 @@ activate :blog do |blog|
   # blog.page_link = "page/{num}"
 end
 
-website_link = 'http://www.example.com'
+website_link = 'https://github.com/aliaksandrb/dreamingpotato.com'
 author_name = 'Aliaksandr Buhayeu'
 set :casper, {
   blog: {
@@ -145,7 +145,8 @@ configure :build do
   activate :asset_hash
 
   # Use relative URLs
-  # activate :relative_assets
+  activate :relative_assets
+  set :relative_links, true
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"

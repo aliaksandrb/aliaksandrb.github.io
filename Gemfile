@@ -16,4 +16,7 @@ gem 'redcarpet', '~> 3.2.3'
 # For "summary"-Helper
 gem 'nokogiri', '~> 1.6.6.2'
 
+# Prefer than haml for complex templates in future
 gem 'slim'
+# Yep, hosting on GitHub
+gem 'middleman-gh-pages'
