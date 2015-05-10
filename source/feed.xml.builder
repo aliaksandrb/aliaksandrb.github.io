@@ -10,7 +10,9 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
   xml.id URI.join(site_url, blog.options.prefix.to_s)
   xml.link "href" => URI.join(site_url, blog.options.prefix.to_s)
   xml.link "href" => URI.join(site_url, current_page.path), "rel" => "self"
-  xml.updated blog.articles.first.date.to_time.iso8601
+  last_article = blog.articles.first
+  time_updated = last_article ? last_article.date : Time.now
+  xml.updated time_updated.to_time.iso8601
   xml.author { xml.name settings.casper[:author][:name] }
 
   @articles.each do |article|
