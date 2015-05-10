@@ -6,10 +6,11 @@ require 'slim'
 
 # Time.zone = "UTC"
 
+prefix_path = ''
 activate :blog do |blog|
   # This will add a prefix to all links, template references and source paths
   # blog.prefix = "blog"
-
+  prefix_path = blog.prefix
   # blog.permalink = "{year}/{month}/{day}/{title}.html"
   # Matcher for blog source files
   blog.sources = "articles/{year}-{month}-{day}-{title}.html"
@@ -32,6 +33,7 @@ activate :blog do |blog|
 end
 
 website_link = 'http://www.example.com'
+author_name = 'Aliaksandr Buhayeu'
 set :casper, {
   blog: {
     url: website_link,
@@ -42,14 +44,15 @@ set :casper, {
     logo: nil # Optional
   },
   author: {
-    name: 'Aliaksandr Buhayeu',
-    bio: 'Software engineer, Ruby fan & trainer, just a positive guy', # Optional
+    name: author_name,
+    bio: 'software engineer, Ruby fan & trainer, just a positive guy', # Optional
     location: 'Minsk, Belarus', # Optional
     website: website_link, # Optional
     gravatar_email: nil # Optional
   },
   navigation: {
-    "Home" => "/"
+    'Home' => '/',
+    'About' => "#{prefix_path}/author/#{author_name.parameterize}/"
   }
 }
 

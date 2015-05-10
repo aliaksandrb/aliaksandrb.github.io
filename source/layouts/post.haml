@@ -21,9 +21,10 @@
       %section.post-content= yield
 
       %footer.post-footer
-        - if gravatar?
+        - if true #gravatar?
           %figure.author-image
-            %a.img{href: author_path, style: "background-image: url(#{gravatar})"}
+            %a.img{href: author_path,
+                   style: "background-image: url(#{image_path('author_avatar.png')})"}
               %span.hidden #{blog_author.name}'s Picture
         %section.author
           %h4
