@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dreaming Potato</title>
+  <subtitle>Tech, Fiction, Travel</subtitle>
+  <id>https://aliaksandrb.github.io/</id>
+  <link href="https://aliaksandrb.github.io/"/>
+  <link href="https://aliaksandrb.github.io/feed.xml" rel="self"/>
+  <updated>2015-05-11T04:06:13+03:00</updated>
+  <author>
+    <name>Aliaksandr Buhayeu</name>
+  </author>
+</feed>
