@@ -9,8 +9,8 @@ require 'slim'
 prefix_path = ''
 activate :blog do |blog|
   # This will add a prefix to all links, template references and source paths
-  # blog.prefix = "blog"
-  prefix_path = blog.prefix
+  # blog.prefix = 'dreamingpotato.com'
+  prefix_path = blog.prefix.dup if blog.prefix
   # blog.permalink = "{year}/{month}/{day}/{title}.html"
   # Matcher for blog source files
   blog.sources = "articles/{year}-{month}-{day}-{title}.html"
@@ -32,7 +32,7 @@ activate :blog do |blog|
   # blog.page_link = "page/{num}"
 end
 
-website_link = 'https://aliaksandrb.github.io/dreamingpotato.com'
+website_link = 'https://aliaksandrb.github.io/'
 author_name = 'Aliaksandr Buhayeu'
 set :casper, {
   blog: {
@@ -51,7 +51,7 @@ set :casper, {
     gravatar_email: nil # Optional
   },
   navigation: {
-    'Home' => '/',
+    'Home' => "/",
     'About' => "#{prefix_path}/author/#{author_name.parameterize}/"
   }
 }
