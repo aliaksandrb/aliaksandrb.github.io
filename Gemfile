@@ -18,5 +18,7 @@ gem 'nokogiri', '~> 1.6.6.2'
 
 # Prefer than haml for complex templates in future
 gem 'slim'
+
 # Yep, hosting on GitHub
-gem 'middleman-gh-pages'
+# Forked version with additional patches applied cuz original seems to be abadonned
+gem 'middleman-gh-pages', github: 'aliaksandrb/middleman-gh-pages'
