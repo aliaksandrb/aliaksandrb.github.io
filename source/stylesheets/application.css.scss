@@ -7,3 +7,7 @@ pre {
   border-style: none;
   padding: initial;
 }
+
+.time-left {
+  @extend .post-date
+}

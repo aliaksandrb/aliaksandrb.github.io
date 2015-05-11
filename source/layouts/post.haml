@@ -12,9 +12,11 @@
     %article.post
       %header.post-header
         %h1.post-title= current_article.title
-        - if current_article.data[:sub_title]
+        - if sub_title = current_article.data[:sub_title]
           %section.post-meta
-            = current_article.data[:sub_title]
+            = sub_title
+            %span.time-left
+              = text_to_end_in_minutes(current_article.body)
 
       %section.post-content= yield
 
