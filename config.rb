@@ -121,6 +121,13 @@ set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true
 activate :syntax, line_numbers: true
 
+activate :autoprefixer do |config|
+  config.browsers = ['last 2 versions', 'Explorer >= 9']
+  config.cascade  = false
+  config.inline   = true
+  #config.ignore   = ['hacks.css']
+end
+
 # Methods defined in the helpers block are available in templates
 # helpers do
 #   def some_helper
