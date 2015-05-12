@@ -22,3 +22,6 @@ gem 'slim'
 # Yep, hosting on GitHub
 # Forked version with additional patches applied cuz original seems to be abadonned
 gem 'middleman-gh-pages', github: 'aliaksandrb/middleman-gh-pages'
+
+# GA support
+gem 'middleman-google-analytics'

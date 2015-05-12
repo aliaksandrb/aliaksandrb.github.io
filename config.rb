@@ -45,7 +45,7 @@ set :casper, {
   },
   author: {
     name: author_name,
-    bio: 'software engineer, Ruby fan & trainer, just a positive guy', # Optional
+    bio: 'software engineer, Ruby fan &amp; trainer, just a positive guy', # Optional
     location: 'Minsk, Belarus', # Optional
     website: website_link, # Optional
     gravatar_email: nil # Optional
@@ -133,14 +133,25 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 set :partials_dir, 'partials'
 
+activate :google_analytics do |ga|
+  ga.tracking_id = 'UA-62859913-1'
+  ga.anonymize_ip = false
+  # Tracking across a domain and its subdomains (default = nil)
+  #ga.domain_name = 'example.com'
+  # Tracking across multiple domains and subdomains (default = false)
+  #ga.allow_linker = false
+  # Tracking Code Debugger (default = false)
+  #ga.debug = false
+  # Tracking in development environment (default = true)
+  ga.development = false
+  # Compress the JavaScript code (default = false)
+  ga.minify = true
+end
+
 # Build-specific configuration
 configure :build do
-  # For example, change the Compass output style for deployment
   activate :minify_css
-
-  # Minify Javascript on build
   activate :minify_javascript
-
   # Enable cache buster
   activate :asset_hash
 
