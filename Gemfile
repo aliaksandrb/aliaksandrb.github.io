@@ -28,3 +28,6 @@ gem 'middleman-gh-pages', github: 'aliaksandrb/middleman-gh-pages'
 
 # GA support
 gem 'middleman-google-analytics'
+
+# ImageTag CDN uploader
+gem 'middleman-image-uploader-tag'

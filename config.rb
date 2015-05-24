@@ -32,7 +32,7 @@ activate :blog do |blog|
   # blog.page_link = "page/{num}"
 end
 
-website_link = 'https://aliaksandrb.github.io/'
+website_link = 'http://dreamingpotato.com/'
 author_name = 'Aliaksandr Buhayeu'
 set :casper, {
   blog: {
@@ -153,6 +153,19 @@ activate :google_analytics do |ga|
   ga.development = false
   # Compress the JavaScript code (default = false)
   ga.minify = true
+end
+
+activate :image_uploader_tag do |e|
+  #e.remote_images_dir = 'remote_images'
+  e.provider = :cloudinary
+  e.provider_config = {
+    cloud_name: ENV['CLOUDINARY_CLOUD_NAME'],
+    api_key: ENV['CLOUDINARY_API_KEY'],
+    api_secret: ENV['CLOUDINARY_API_SECRET'],
+    enhance_image_tag: false,
+    static_image_support: true,
+    secure: true
+  }
 end
 
 # Build-specific configuration
