@@ -30,4 +30,4 @@ gem 'middleman-gh-pages', github: 'aliaksandrb/middleman-gh-pages'
 gem 'middleman-google-analytics'
 
 # ImageTag CDN uploader
-gem 'middleman-image-uploader-tag'
+gem 'middleman-image-uploader-tag', git: 'https://github.com/aliaksandrb/middleman-image-uploader-tag.git'

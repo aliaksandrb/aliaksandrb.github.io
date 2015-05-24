@@ -18,4 +18,4 @@
 .DS_Store
 
 # Ignore images being uploaded online
-source/remote_images
+source/images/remote_images

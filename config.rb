@@ -60,6 +60,7 @@ page '/feed.xml', layout: false
 page '/sitemap.xml', layout: false
 
 ignore '/partials/*'
+ignore '/images/remote_images/*'
 
 ready do
   blog.tags.each do |tag, articles|
