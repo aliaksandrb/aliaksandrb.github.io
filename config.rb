@@ -165,7 +165,7 @@ activate :image_uploader_tag do |e|
     api_secret: ENV['CLOUDINARY_API_SECRET'],
     enhance_image_tag: false,
     static_image_support: true,
-    secure: true
+    secure: false
   }
 end
 

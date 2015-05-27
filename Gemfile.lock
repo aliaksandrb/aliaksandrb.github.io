@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/aliaksandrb/middleman-image-uploader-tag.git
-  revision: d4a1af977b804537bee52a5240bcc7aff91ae243
+  revision: 3622e5de0c4fff01dbdc3226d13e246a1ccd1fd2
   specs:
-    middleman-image-uploader-tag (0.0.1)
+    middleman-image-uploader-tag (0.0.2)
       cloudinary (~> 1.1.0)
       middleman-core (>= 3.3.12)
 
@@ -120,9 +120,9 @@ GEM
     middleman-syntax (2.0.0)
       middleman-core (~> 3.2)
       rouge (~> 1.0)
-    mime-types (2.5)
+    mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.6.1)
+    minitest (5.7.0)
     multi_json (1.11.0)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
@@ -139,7 +139,7 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.4.2)
-    rb-fsevent (0.9.4)
+    rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redcarpet (3.2.3)
