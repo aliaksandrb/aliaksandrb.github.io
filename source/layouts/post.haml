@@ -62,6 +62,8 @@
             %span.hidden Facebook
           %a.icon-google-plus{href: google_plus_url, onclick: "window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"}
             %span.hidden Google+
+        %section.comments
+          = disqus
 
   %aside.read-next
     - if prev_article = current_article.previous_article

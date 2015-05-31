@@ -169,6 +169,12 @@ activate :image_uploader_tag do |e|
   }
 end
 
+configure :development do
+  activate :disqus do |d|
+    d.shortname = nil
+  end
+end
+
 # Build-specific configuration
 configure :build do
   activate :minify_css
@@ -185,4 +191,8 @@ configure :build do
 
   # gzip text files # NOTE! need a test with github pages
   activate :gzip
+
+  activate :disqus do |d|
+    d.shortname = 'dreamingpotato'
+  end
 end
