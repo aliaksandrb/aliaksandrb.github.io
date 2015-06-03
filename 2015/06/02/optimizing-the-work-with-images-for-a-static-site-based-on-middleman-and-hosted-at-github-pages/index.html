@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dreaming Potato: Оптимизируем работу с изображениями для статического сайта на базе Middleman и GitHub Pages</title>
+<meta content='Запоздало поддавшись всеобщему тренду блоггинга и игры в писателей да технических специалистов, публикую свой первый пост! :) В нём я расскажу о...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="../../../../images/favicon.ico" rel="icon" type="image/ico" />
+<link href="../../../../stylesheets/application-6459b79e.css" rel="stylesheet" type="text/css" />
+<link href='//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400' rel='stylesheet' type='text/css'>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/aliaksandr-buhayeu/'>About</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header post-head' style='background-image: url(http://res.cloudinary.com/aliaksandrb/image/upload/v1433294164/strange_bridge.jpg)'>
+<nav class='clearfix main-nav overlay'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Оптимизируем работу с изображениями для статического сайта на базе Middleman и GitHub Pages</h1>
+<section class='post-meta'>
+Автоматизация рутины и кэширование для ленивых блоггеров
+<span class='time-left'>
+7 min
+</span>
+</section>
+</header>
+<section class='post-content'><p>Запоздало поддавшись всеобщему тренду блоггинга и игры в писателей да технических специалистов, публикую свой первый пост! :)</p>
+
+<p>В нём я расскажу об одном из подходов к работе с изображениями для случая статического сайта, сгенерированного движком Middleman и размещённого на GitHub Pages.</p>
+
+<p></p>
+
+<h2>Почему GitHub Pages + Middleman + Images != &hearts;</h2>
+
+<p>Исходные данные просты:</p>
+
+<ul>
+<li>новый блог / сайт на движке <a href="https://middlemanapp.com/">Middleman</a> - нам ведь нужно что-то простое, но гиковское</li>
+<li>размещаемся при этом на <a href="https://pages.github.com/">GitHub Pages</a> - так как скорее всего у нас будет около десяти посетителей в месяц, и покупать отдельный хостинг для такого как-то глупо</li>
+<li>из предыдущего пункта вытекает, что деплоимся мы через Git</li>
+</ul>
+
+<p>Рано или поздно нам приходит идея всё красиво оформить: главную страницу с бэкграундом, фоточки с котятами в посты вставить.</p>
+
+<p>Вроде таких:</p>
+
+<p><img title="Мечтает, котяра.." alt="Picture of lying cat" src="http://res.cloudinary.com/aliaksandrb/image/upload/v1433294098/lying_cat.jpg" /></p>
+
+<p>Полные энтузиазма мы всё сделали, локально закоммитили, пришло время пушить!</p>
+
+<p>И первое, что сбивает наш запал - это скорость загрузки фоток на сервера GitHub.</p>
+
+<p>На моём, по-сегодняшним меркам, древнем ADSL со 512 Кбит/c на отдачу, скорость заливки по SSH варьируется  в пределах 65-120 Кбит/c, для варианта же с HTTPS всё ещё хуже, и составляет около 55-75 Кбит/c.</p>
+
+<p><img title="В 8 раз медленнее доступной" alt="Picture of upload speed to GitHub" src="http://res.cloudinary.com/aliaksandrb/image/upload/v1433294099/github_upload.png" /></p>
+
+<p>Это при том, что различные тесты показывают максимальную скорость загрузки до Сан-Франциско (именно там находятся основные сервера GitHub) в 490 Кбит/c. То есть в 4-8 раз меньше доступной.</p>
+
+<p>На практике это означает, что в среднем фотографию в 1 МБ я заливаю примерно полторы минуты. А если их несколько?</p>
+
+<p>Есть, правда, одна хорошая отмазка - за время заливки нескольких фотографий высокого качества можно сходить, чайку попить..</p>
+
+<p>Закрываем на это глаза, пока не приходит осознание следующего логичного факта: так как размер удалённого репозитория будет расти пропорционально количеству залитой статики, то синхронизация с ним с другого компьютера, операции по слиянию веток с постами-заготовками и прочее - все эти процессы будут медленными и скучными.</p>
+
+<p>Но и с этим можно смирится, ведь хостинг-то бесплатный! :)</p>
+
+<p>Терпим, мучаемся, но вот масло в огонь подливает ещё и медленная загрузка нашего блога. Статического-то сайта!</p>
+
+<p>Причём, даже если мы не обновляем его продожительное время, и браузер вроде как должен был успешно закэшировать все посещённые страницы, мы всё равно постоянно сталкиваемся с ожиданием загрузки страниц и фотографий.</p>
+
+<p>Примерно в этот момент халявный уксус становится не таким уж и сладким, и мы задумываемся о выделении минимального бюджета на свой удалённый сервачок, планами по его настройке и прочих программистских радостях, забывая, что первоначальной идеей было &ldquo;развернуть всё по-быстрому и уделять больше внимания наполнению&rdquo;.</p>
+
+<p>Далее апатия, потеря мотивации, писать оказалось не так интересно, домен продлевать не хочется&hellip;</p>
+
+<h2>Причины такой несправедливости</h2>
+
+<p>Настоящие пытливые умы так просто не сдаются, ведь правда? Решаем копнуть чуть глубже и вот что мы узнаём:</p>
+
+<ul>
+<li><code>git push</code> не так прост, как кажется на первый взгляд</li>
+</ul>
+
+<p>Независимо от протокола передачи (SSH или HTTPS), происходит предварительное соединение, запрос на выполнение команд на удалённом сервере, обмен информацией о том, каких коммитов пока ещё нет на сервере, компрессинг данных перед их передачей и тд.</p>
+
+<ul>
+<li><p>по-хорошему Git вообще не предназначен для бинарников, так как это противоречит его идее работы с дельтами разницы между текстовыми файлами</p></li>
+<li><p>обход загрузки больших файлов есть и решается, как правило, через сторонние расширения к Git (типа <a href="https://git-lfs.github.com/">LFS</a> и <a href="https://git-annex.branchable.com/">git-annex</a>) или отдельным сабмодулем (но всё это явно не наши варианты, так как объёмы данных не те)</p></li>
+<li><p>несмотря на то, что GitHub Pages крутятся за собственным CDN, и статика кэшируется и раздаётся с ближайшего к адресу запроса сервера, есть один нюанс.</p></li>
+</ul>
+
+<p>GitHub - это сервис для кода, GitHub Pages  - сервис не для блогов, а для простых домашних страниц репозиториев. А главным требованием для таких страниц является частое обновления и синхронизация с кодовой базой репозитория, чтобы данные были актуальны. Ведь демо страница не должна использовать устаревший код.</p>
+
+<p>Так вот, <strong>GitHub CDN кэширует статику только на 10 минут</strong>. Достигается это стадартным заголовком <code>Cache-Control=&quot;max-age=600&quot;</code>. По этой причине, каждые 10 минут ВСЯ статика (css/js/images/fonts) с вашего сайта будет инвалидирована (даже если она не менялась), а вам и вашим читателям придётся грузить всё заново.</p>
+
+<p>И если минифицированные файлы js/сss + шрифты весят немного (120 КБ в моём случае), то изображения выкачиваются в полном размере!</p>
+
+<p>Отсюда и малая скорость загрузки при повторном посещении - просто потому что оно на самом деле как первое! :)</p>
+
+<h2>Идеи</h2>
+
+<p>Несколько самых простых вариантов, сразу приходящих в голову:</p>
+
+<ul>
+<li>завернуть наш блог за другой сторонний CDN, в котором вручную настроить политику кэширования и время жизни контента.</li>
+</ul>
+
+<p>Отличный вариант (не считая времени на поиск, регистрацию, настройку и перенос DNS записей).</p>
+
+<p>Однако он не решает проблемы маленькой скорости загрузки картинок в репозиторий, его неизменно растущий размер и возможность прослыть доморощенным любителем использовать инструменты не по-назначению.</p>
+
+<ul>
+<li>осознав беду Git c большими файлами, принимаем однозначное решение не комитить фотографии, а хранить их на внешних ресурсах. Таких как <a href="https://www.flickr.com/">Flickr</a> и его аналогах, а на страницы вставлять абсолютные пути к загруженным файлам.</li>
+</ul>
+
+<p>Тоже хорошо: теперь сам деплой проходит быстрее, репозиторий не растёт, а наличие распределённой сети серверов у всех крупных фотохостингов ускоряет работу нашего сайта.</p>
+
+<p>Единственый минус лишь в увеличении подготовительный работы: отобрать фотографии, протестировать их локально (используя относительные пути), потом залить на фотохостинг в публичный альбом (что не всегда удобно, если аккаунт там для других целей), получить удалённые ссылки, заменить ими локальные, всё перепроверить и только потом собирать проект и деплоиться.</p>
+
+<p>В общем неудобно..</p>
+
+<h2>Решение</h2>
+
+<p>Лично я не смог терпеть компромиссы между скоростью и удобством, именно поэтому на скорую руку был запилен proof-of-concept гем для MiddleMan - <a href="https://github.com/aliaksandrb/middleman-image-uploader-tag/">Middleman Image Uploader Tag</a>.</p>
+
+<p>Принцип работы сводится к автоматизации рутинной работы по заливке изображений на фотохостинг, подмены ссылок и гарантированном использовании CDN с большим временем жизни кэша.</p>
+
+<p>Как установить и настроить можно почитать на странице гема, ничего сложного там нет, а я лишь расскажу как происходит процесс:</p>
+
+<ul>
+<li>локально, в специальной папке хранятся все картинки больших размеров, которые планируется загружать. Папка попадает в <code>.gitignore</code>, таким образом на сервер мы её не пушим (как минус меньше пьём чаю).</li>
+<li>во время проверки и разработки (<code>mode :development</code>) используются обычные относительные пути Middleman, только с другим хэлпером.</li>
+</ul>
+
+<p>К примеру, <code>remote_image_tag &#39;cats.jpg&#39;</code> сам найдёт картинку в нашей папке и подставит её в обычный <code>image_tag</code>.</p>
+
+<ul>
+<li>подготовив пост, ничего не меняя, мы просто собираем проект.</li>
+</ul>
+
+<p>В это время, все вызовы хелпера <code>remote_image_tag</code> сделают немного магии: изображения будут залиты на выбранный вами фотохостинг / CDN (на данный момент поддерживается только <a href="http://cloudinary.com/">Cloudinary</a>, но при желании можно добавить любой другой).</p>
+
+<ul>
+<li>по-окончанию загрузки, автоматически получается удалённая ссылка и подставляется в виде теперь уже абсолютного пути в <code>image_tag</code> хэлпер, с чем наш проект и отправляется во внешний мир.</li>
+</ul>
+
+<p>По-итогу, не меняя нашего подхода к работе и подготовке новых постов мы получаем изображения, загруженные не на GitHub, а на отдельный быстрый CDN с длительным сроком хранения статики.</p>
+
+<p>Деплой происходит намного быстрее, а скорость повторной загрузки страницы по прошествию 10 минут в моём случае <strong>уменьшилось c 6.6 сек до 1.1</strong>!</p>
+
+<p>И понятное дело, что чем больше будет изображений, тем ощутимее будет разница.</p>
+
+<p><strong>УСПЕХ!</strong></p>
+
+<h2>Для любопытных</h2>
+
+<p>Во время экспериментов, было замечено: если после загрузки изображения использовать ссылку с HTTPS, то на подтверждение подключения уходит без малого секунда.</p>
+
+<p>Поэтому данная возможность по-умолчанию отключена (да и нет необходимости в передаче публично доступной фотки по шифрованному каналу). Однако эту опцию можно вернуть через аргумент в вызове хэлпера.</p>
+
+<p>Ещё один момент заключается в размещении серверов GitHub Pages и Cloudinary.</p>
+
+<p>Так, пинг до первого у меня составляет <code>142 ms</code>, до второго же около <code>26 ms</code>. Можно предположить, что у <a href="http://www.akamai.com/">Аkamai</a>, мощности которого использует Cloudinary, лучшее распределение серверов по миру.</p>
+
+<p>И как небольшой бонус, Google PageSpeed добавил балл за эту маленькую оптимизацию :D</p>
+
+<hr>
+
+<p>На этом всё! Пользуюсь сам и надеюсь, что кому-нибудь также пригодится.</p>
+
+<p>И репозитории будут небольших размеров, а страницы с котиками будут быстро открываться! :)</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre>  /\___/\
+ ( o   o )
+ (  =^=  )
+ (        )
+ (         )
+ (          )))))))))))
+</pre></td></tr></tbody></table>
+</div>
+</section>
+<section class='post-meta'>
+<span>
+Published
+</span>
+on <a href='/tag/middleman/'>middleman</a>, <a href='/tag/gem/'>gem</a>, <a href='/tag/cloudinary/'>cloudinary</a>, <a href='/tag/github/'>github</a>, <a href='/tag/optimization/'>optimization</a>
+<time class='post-date' datetime='2015-06-02'>
+02 June 2015
+</time>
+</section>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/aliaksandr-buhayeu/' style='background-image: url(http://res.cloudinary.com/aliaksandrb/image/upload/v1433294195/author_avatar.png)'>
+<span class='hidden'>Aliaksandr Buhayeu's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/aliaksandr-buhayeu/'>Aliaksandr Buhayeu</a>
+</h4>
+<p></p>
+software engineer, Ruby fan &amp; trainer, just a positive guy
+<div class='author-meta'>
+<span class='author-location icon-location'>Minsk, Belarus</span>
+<span class='author-link icon-link'>
+<a href='http://dreamingpotato.com/'>http://dreamingpotato.com/</a>
+</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/share?text=Оптимизируем работу с изображениями для статического сайта на базе Middleman и GitHub Pages&amp;amp;url=http://dreamingpotato.com/2015/06/02/optimizing-the-work-with-images-for-a-static-site-based-on-middleman-and-hosted-at-github-pages/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://dreamingpotato.com/2015/06/02/optimizing-the-work-with-images-for-a-static-site-based-on-middleman-and-hosted-at-github-pages/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://dreamingpotato.com/2015/06/02/optimizing-the-work-with-images-for-a-static-site-based-on-middleman-and-hosted-at-github-pages/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+<section class='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+//<![CDATA[
+                  var disqus_shortname = 'dreamingpotato';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>Dreaming Potato</a>
+&copy;
+2015
+</section>
+<section class='poweredby'>
+Work in a progress..
+</section>
+</footer>
+</div>
+<script src="../../../../javascripts/application-c73632ed.js" type="text/javascript"></script>
+<script type="text/javascript">!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-62859913-1","auto"),ga("send","pageview");</script>
+</body>
+</html>
