@@ -10,6 +10,15 @@ RUBY_VER = '2.2.3'
 MEMORY = 2560
 CPU_COUNT = 4
 
+CLOUDINARY_API_KEY = ENV["CLOUDINARY_API_KEY"]
+CLOUDINARY_API_SECRET = ENV["CLOUDINARY_API_SECRET"]
+CLOUDINARY_CLOUD_NAME = ENV["CLOUDINARY_CLOUD_NAME"]
+
+unless (CLOUDINARY_API_KEY && CLOUDINARY_API_SECRET && CLOUDINARY_CLOUD_NAME)
+  puts 'Missed required ENV variables, cannot processed!'
+  exit(1)
+end
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'ubuntu/trusty64'
 
@@ -53,6 +62,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     gem install bundler
     bundle install
+  SHELL
+
+  config.vm.provision 'Setup environment variables', type: 'shell',
+    run: 'always', privileged: false, inline: <<-SHELL
+    echo > $HOME/.secret_keys
+
+    echo -e 'export CLOUDINARY_API_SECRET=#{CLOUDINARY_API_SECRET}' >> $HOME/.secret_keys
+    echo -e 'export CLOUDINARY_API_KEY=#{CLOUDINARY_API_KEY}' >> $HOME/.secret_keys
+    echo -e 'export CLOUDINARY_CLOUD_NAME=#{CLOUDINARY_CLOUD_NAME}' >> $HOME/.secret_keys
+
+    source $HOME/.secret_keys
   SHELL
 
   config.vm.provision 'PROVISIONING COMPLETE!', run: 'always', type: 'shell',
