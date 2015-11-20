@@ -17,5 +17,7 @@
 # Ignore .DS_store file
 .DS_Store
 
-# Ignore images being uploaded online
+# Ignore images being uploaded online 
+# Actually it blocks us in using multiply blog forks,
+# as images saved only on one computer and online..
 source/images/remote_images
