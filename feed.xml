@@ -5,16 +5,33 @@
   <id>http://dreamingpotato.com/</id>
   <link href="http://dreamingpotato.com/"/>
   <link href="http://dreamingpotato.com/feed.xml" rel="self"/>
-  <updated>2015-06-02T03:00:00+03:00</updated>
+  <updated>2015-11-21T00:00:00+00:00</updated>
   <author>
     <name>Aliaksandr Buhayeu</name>
   </author>
   <entry>
+    <title>How to install python-libtorrent in virtualenv</title>
+    <link rel="alternate" href="http://dreamingpotato.com/2015/11/21/how-to-install-python-libtorrent-in-virtualenv/"/>
+    <id>http://dreamingpotato.com/2015/11/21/how-to-install-python-libtorrent-in-virtualenv/</id>
+    <published>2015-11-21T00:00:00+00:00</published>
+    <updated>2015-11-21T14:30:52+00:00</updated>
+    <author>
+      <name>Aliaksandr Buhayeu</name>
+    </author>
+    <summary type="html">Recently, I have needed to install Python binding for libtorrent (popular opensource C++ library, implementing the BitTorrent protocol).
+
+And everything would be fine if there was an PyPI package provided for Linux. But it&amp;rsquo;s not.
+
+In this article I will describe how to install this library from sources but without polluting system scope.
+
+</summary>
+  </entry>
+  <entry>
     <title>Оптимизируем работу с изображениями для статического сайта на базе Middleman и GitHub Pages</title>
     <link rel="alternate" href="http://dreamingpotato.com/2015/06/02/optimizing-the-work-with-images-for-a-static-site-based-on-middleman-and-hosted-at-github-pages/"/>
     <id>http://dreamingpotato.com/2015/06/02/optimizing-the-work-with-images-for-a-static-site-based-on-middleman-and-hosted-at-github-pages/</id>
-    <published>2015-06-02T03:00:00+03:00</published>
-    <updated>2015-06-03T04:10:10+03:00</updated>
+    <published>2015-06-02T00:00:00+00:00</published>
+    <updated>2015-11-21T14:30:52+00:00</updated>
     <author>
       <name>Aliaksandr Buhayeu</name>
     </author>
