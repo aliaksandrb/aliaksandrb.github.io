@@ -1,0 +1,101 @@
+---
+title: How to install python-libtorrent in virtualenv
+sub_title: And keep your system clean
+date: 2015-11-21 00:00 UTC
+cover: libtorrent.png
+layout: post
+category: howto
+tags: python, virtualenv, libtorrent, ubuntu
+published: true
+---
+
+Recently, I have needed to install Python binding for [libtorrent](http://libtorrent.org/) (popular opensource C++ library, implementing the BitTorrent protocol).
+
+And everything would be fine if there was an `PyPI` package provided for Linux. But it's not.
+
+In this article I will describe how to install this library from sources but without polluting system scope.
+
+READMORE
+
+### Problem description
+
+In current situation the only way to use it - is to build it from sources or install as package of your Linux distribution.
+
+Both possibilities has some cons:
+
+* system and current development environment scopes pollution
+* install by a package could be few versions outdated in comparison with an upstream
+* install from sources sometimes quite hard to rollback properly, as it leaves a lot of artifacts around the different paths
+
+Because I have a lot of projects with different dependencies and I don't want to overlap them,
+the preferable way of such installations for me is an `isolated` installation with a help of [virtualenv](https://virtualenv.readthedocs.org/en/latest/).
+
+Personally I like the [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) tool as it simplifies some typical workflow.
+
+So how to install Python bindings for the C++ library isolated in `virtualenv`?
+
+### Here is step by step guide how to do it
+Assume that you have Python, PIP and `virtualenv` or `virtualenvwrapper` installed. Also this guide is written with Ubuntu as a host system.
+
+```bash
+$ python --version
+Python 2.7.6
+$ pip --version
+pip 7.1.2 from /usr/local/lib/python2.7/dist-packages (python 2.7)
+```
+
+* Create new `virtualenv` or activate an existent one:
+
+```bash
+$ mkvirtualenv libtorrent
+```
+
+* Install required dependencies required for building the `libtorrent` from sources as `.deb` packages. It could be removed after.
+
+```bash
+$ sudo apt-get build-dep python-libtorrent
+```
+
+* Download and unpack the latest `libtorrent` tarball from the [Sourceforge](http://sourceforge.net/projects/libtorrent/) or [Github](https://github.com/arvidn/libtorrent). For example:
+
+```bash
+$ wget http://downloads.sourceforge.net/project/libtorrent/libtorrent/libtorrent-rasterbar-1.0.5.tar.gz
+$ tar -zxvf libtorrent-rasterbar-1.0.5.tar.gz
+$ cd libtorrent-rasterbar-1.0.5/
+```
+
+* Build the library from the sources.
+
+Here is the small trick by the way: we need to provide additional options for default `configure` command - actual Python executable from the `virtualenv` and local path to install it, to make it installed locally not system-wide.
+Of course you can pass additional configuration options if needed, for `geoip` for example.
+
+_This commands could take a while if you have not very powerful machine._
+
+```bash
+$ ./configure --enable-python-binding PYTHON=`which python` --prefix=$VIRTUAL_ENV
+$ make
+$ make install
+```
+
+* Let library know where it should be loaded:
+
+```bash
+export LD_LIBRARY_PATH="$VIRTUAL_ENV/lib"
+```
+
+If you plan to play with it for a while it could be a good idea to add an export
+into your `~/.bashrc` or `~/.profile`.
+
+* And finally let's check it!
+
+```python
+$ python
+>>> import libtorrent
+>>> libtorrent.version
+'1.0.5.0'
+```
+
+As there is no import errors we assume that everything is working fine :)
+
+Hope that post was useful!
+
