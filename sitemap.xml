@@ -13,68 +13,92 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://dreamingpotato.com/2015/11/24/what-have-i-learned-from-the-participation-in-hackathon-railsrumble-2015/index.html</loc>
+    <lastmod>2015-11-28T19:19:47+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://dreamingpotato.com/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/author/aliaksandr-buhayeu/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/python/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/virtualenv/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/libtorrent/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/ubuntu/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/middleman/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/gem/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/cloudinary/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/github/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://dreamingpotato.com/tag/optimization/index.html</loc>
-    <lastmod>2015-11-21T14:58:43+00:00</lastmod>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://dreamingpotato.com/tag/hackathon/index.html</loc>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://dreamingpotato.com/tag/summary/index.html</loc>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://dreamingpotato.com/tag/project-management/index.html</loc>
+    <lastmod>2015-11-28T19:23:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

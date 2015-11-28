@@ -5,10 +5,30 @@
   <id>http://dreamingpotato.com/</id>
   <link href="http://dreamingpotato.com/"/>
   <link href="http://dreamingpotato.com/feed.xml" rel="self"/>
-  <updated>2015-11-21T00:00:00+00:00</updated>
+  <updated>2015-11-24T00:00:00+00:00</updated>
   <author>
     <name>Aliaksandr Buhayeu</name>
   </author>
+  <entry>
+    <title>What have I learned from the participation in hackathon RailsRumble 2015</title>
+    <link rel="alternate" href="http://dreamingpotato.com/2015/11/24/what-have-i-learned-from-the-participation-in-hackathon-railsrumble-2015/"/>
+    <id>http://dreamingpotato.com/2015/11/24/what-have-i-learned-from-the-participation-in-hackathon-railsrumble-2015/</id>
+    <published>2015-11-24T00:00:00+00:00</published>
+    <updated>2015-11-28T19:19:47+00:00</updated>
+    <author>
+      <name>Aliaksandr Buhayeu</name>
+    </author>
+    <summary type="html">At the middle of November our small team have participated in the RailsRumble
+hackathon.
+
+Despite we haven&amp;rsquo;t took any prize we were satisfied by the process itself and
+had some fun during it.
+
+And after a certain time, I want to share my thoughts about how it was generally
+and what lessons I have learned from that participation.
+
+</summary>
+  </entry>
   <entry>
     <title>How to install python-libtorrent in virtualenv</title>
     <link rel="alternate" href="http://dreamingpotato.com/2015/11/21/how-to-install-python-libtorrent-in-virtualenv/"/>
