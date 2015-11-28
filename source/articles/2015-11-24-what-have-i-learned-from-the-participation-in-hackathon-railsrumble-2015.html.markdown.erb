@@ -1,0 +1,319 @@
+---
+title: What have I learned from the participation in hackathon RailsRumble 2015
+sub_title: We have failed but don't regret
+date: 2015-11-24 00:00 UTC
+layout: post
+cover: hackathon_rr15.jpg
+category: thoughts
+tags: hackathon, summary, project management
+published: true
+---
+
+At the middle of November our small team have participated in the [RailsRumble]
+hackathon.
+
+Despite we haven't took any prize we were satisfied by the process itself and
+had some fun during it.
+
+And after a certain time, I want to share my thoughts about how it was generally
+and what lessons I have learned from that participation.
+
+
+READMORE
+
+### Short intro about hackathons
+
+For those who are not familiar with a [hackathon] format: it is a geek event
+where for a limited time you as individual or as part of a team suppose to
+provide the working prototype of your idea. It could be everything, from a
+web-application or mobile app to a handcrafted robot, just depends on the topic
+and the rules of the specific hackathon.
+
+Various people, time pressure, continuous concentration on a project, general
+excitement - just a few of many other factors that make hackathons full of fun
+and challenges.
+
+What differs the [RailsRumble] from the others hackathons is its
+restrictions list. Let me just leave an quote from their website here:
+
+> The Rails Rumble is a distributed programming competition where hundreds of
+> teams of one to four people, from all over the world, have 48 hours to build
+> an innovative web application, with Ruby on Rails, or another Rack-based Ruby
+> web framework, along with other web technologies. Use Ruby for your entire
+> stack, or just the backend.
+
+> After the 48 hours are up, everyone picks their favorites and the top ten
+> winners are revealed!
+
+I believe that it is enough for understanding format of the event.
+
+### How it was
+
+It is good to notice, that actually it was the first online hackathon for us,
+and that it is slightly different than typical local one, when each participant
+team stays in one place all together for the whole time period.
+
+We have decided to stay at our working office rather than at someone private
+place because of a such criteria:
+
+* it is empty on weekends, so nobody could disturb us
+* we could stay there for the whole night long
+* such facilities as high-speed Internet, whiteboard and space for everybody are
+  already provided, so we no need to spend a time on such things
+* I have much powerful workstation here than at home :)
+
+Because of time-zones difference we have decided to start not at exact beginning
+(2 AM our time) but at morning, near 6 AM and stay until the end,
+44 hours later.
+
+Some food was bought before, the rest we have ordered online after.
+
+Next picture shows my unhealthy "starter kit" from the first day:
+![Hackathon starter kit](<%= remote_image_tag_link 'food_pack.jpg' %> 'Almost no healthy food here :p')
+
+For the whole period we have coded, talked, discussed things, spent time on the
+kitchen, and so on.
+
+The luckiest are even had a time to sleep, but I personally  haven't came in
+that list and have slept only for 3 hours only x_x.
+
+Long story short, here is the short time-lapse recap movie, hope it give some
+overview:
+
+<div class='videowrapper'>
+  <iframe width="710" height="399" src="https://www.youtube.com/embed/dBL-C-AkGvY?html5=1" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<br>
+<br>
+
+### What have we done right
+
+Here is short list of the steps done that helped us to successfully participate
+up to finish line:
+
+###### Idea brainstorming
+
+Okay, that is clear. If you have no idea before event start the chances that you
+would get one are pretty small. Believe me or not, but it take a lot of time
+to get an at least something that satisfies every member and at least worth to
+get hands dirty.
+
+We have met a few times week before the actual start to share our thoughts and
+ideas with an aim to select the main one.
+
+###### Preliminary planning
+
+I think that it is the second step that you should do.
+
+According to the rules you can not commit any code until the event starts.
+But you could and should plan how you would implement your idea, who would be
+responsible for which part project and so on.
+
+Of course you no need to plan every minor point, but even generic map of
+required actions, technological stack chosen and responsibilities would affect
+your participation in a positive way. You would save a lot of time by this.
+
+We have used [Trello] for it.
+
+###### Disturbing things and facilities
+
+As it was mentioned before, you don't need to spend your limited time on things
+that are not project related. So it always better to think about it before.
+
+###### Take a rest
+
+It always good to be prepared not only technically but physically too.
+
+A few hours late might not be a big deal if you start full of energy in contrast
+the situation when you start earlier but feel sleepy from the beginning.
+
+-------------------------
+The sad story that it's the end of the list already.
+So maybe it's the actual reason of our fail. :)
+
+Here is the opposite one.
+
+### What have we done wrong
+
+The list of fails and notices to have in mind for a next time.
+
+###### Check the feasibility of the main idea
+
+The biggest fail that have caught us from the beginning.
+
+Our idea have looked _achievable_, some useful libraries were found but
+we haven't checked the dependency on 3rd-party services. Yay!
+
+At the beginning we have thought about internal usage of the various search
+engines such as `Google`, `Bing`, `Yandex` and so on.
+
+But the problem we haven't checked have related to the limits of its usage.
+
+**And all of them are pretty small!**
+
+By **small** I mean the numbers like **1000 requests per month** and less.
+And that is not enough for testing, active development and future usage by other
+people at least for time of judging.
+
+We have spent some time trying to find an easy ways to overcome those limits but
+without success.
+
+Of course there are some methods, like switching between precreated accounts,
+proxy usage and so on, but we have decided that it would just wrong to base
+the main functionality trying to overplay a big corporations.
+
+Because of this we have switched to another, much more simplified idea,
+just to not leave the distance of the hackathon.
+
+Moral: **Check it twice before start or at least have a good plan B.**
+
+###### Environment setup
+
+The same story every time.. We have discussed the technological stack and
+libraries versions, but doesn't prepared setup on local machines.
+
+So at least an hour was spent only on basic installations and problem solving
+for three different computers.
+
+**It would be beneficial to have an environment ready for everybody.**
+
+I prefer [Vagrant] for this, so next time we definitely should start just by
+running `vagrant up` on the precreated `Vagrantfile`.
+
+###### Reimplementing the wheel
+
+For a custom project it might be applicable to create some specific solutions
+for common things. But it definitely not worth to do it when you limited by
+time.
+
+**Simplify as much as possible. Try to reuse existent libraries and solutions.**
+
+If it's `Rails` then use an existent gems, if it's `Javascript` -
+`jquery-plugins`, `npm` packages or any other framework libraries, dependent
+on what you are using.
+
+**Don't spend a time on writing something from scratch until you really
+need to.** It error prone and time consuming. And generally useless because
+almost always you will never use same codebase after even if you will decide to
+support a project after the competition.
+
+###### Share roles and do what you are better in
+
+My recent tasks at work are related to backends. But almost 70% of hackathon
+time I have spent on frontend, just because nobody else could/want to do it.
+
+Of course sometimes it is fun to learn new/refresh forgotten skills,
+but if you have a chance - **try to find a proper person in your team who will
+fill these gaps better.** It all about balanced team.
+
+I believe that if we have a frontend developer (our team have consisted on
+two backends and one designer) we would achieve and got done dramatically more.
+
+At the same time I have learned the different types of web-animations, specially
+the `CSS` and `Javascript` based ones.
+
+Don't know where to use that skill though :J
+
+###### Think about UI & design
+
+The practice shows that even not rocket-science project could be warmly welcomed
+by audience if it looks good and haven't leave the feeling of _incompleteness_.
+But even high-tech project with raw blank page layout and blue links on it
+hasn't so many chances to be even tested by people, just because it seems
+broken in such case.
+
+It's sad but true. From over `250 projects` have participated in [RailsRumble],
+for my opinion near a half looked broken, and some of them actually was.
+
+Usually at local hackathons only near 30 projects presented at final stage. But
+online format allows much wider amount of participants.
+
+**So you can't get positive feedback if people even can't try claimed
+functionality. Or if it looks so bad that they just wouldn't to.**
+
+###### Concentrate on the main things
+
+All the cool features could be added at the next iteration if you have a time.
+
+Just take you main idea, make it work and be satisfied with it. Only when you
+already have something to show check what could be improved or added.
+
+**Don't try to do everything at once, there is a big chance that you will
+finish with nothing.**
+
+The working prototype is better that a none-working full-feature project.
+
+###### Spend time on testing
+
+On the hackathon there is big chance that you will skip all the tests :)
+**But you should check at least manually that main flow is working, there is no
+obvious bugs and so on.**
+
+We have spent a half an hour together checking a project before final countdown.
+During that time several bugs were found, but despite that we have fixed them,
+at least the one actually come to production and was found after code the
+freeze.
+
+Luckily nobody have used it and we have had a time to provide a hack next day.
+_(As commits was forbidden and [Heroku] boxes are read-only, the hack was based
+on a `cron` job that periodically makes some changes on remote server using its
+console add-on.)_
+
+###### Restrict access but leave the guest login and respect people privacy
+
+This point depends on the type of your application. In some cases if you don't
+want your application to be _broken_ in a fist minutes of public access try to
+restrict it to logged in users or hide the dangerous endpoints at all.
+
+Here by _broken_ I mean not only totally crashed application but also the empty
+one, in cases when you need some precreated data being shown to users, but
+unfortunately being deleted by someone.
+
+At the same time registration should be easy (you can just prepare guest
+account) and don't ask more permissions than you really need to.
+I have seen a lot of projects that requires full access to read & write on
+[Github], including private repositories. It is clear that only people with
+an empty accounts would try such service during the judgment period.
+
+
+Thats all!
+
+Additionally, you can find a few more worthy tips specially on how to improve
+the score judges will give your app in [this blog-post] by Jamie Dyer, who was
+both a competitor and an expert judge in the Rails Rumble some years ago.
+I have found it useful, but sadly only after participation :(
+
+### Conclusion
+
+Each hackathon is different. Some looks like a competition, some aren't.
+Despite of its format it's up to you to find a reason for participation. And
+based on that you might not take the notices above to seriously.
+
+In any case you would have a nice time with a various people on a same
+mental wave with you, discover new technologies, try yourself in a new roles,
+share skills, listen for interesting mentors and much more..
+
+Networking, pizza and beer (juice) could be also the reason to participate. :)
+
+So you will never regret despite the result. **See you at hackathons!**
+![Say Hi!](<%= remote_image_tag_link 'we_hackathon_rr15.jpg' %> 'Our last picture')
+
+
+_**P.S**. Our small laggy project made for fun is still online and could be
+found [here](http://searchfighter.r15.railsrumble.com/)._
+
+_The idea is pretty simple: create a quiz, each question in which
+is a fighting round. Fighting generated on server and even it looks a bit
+similar (because of small amount of .png-sprites prepared) is different each
+time. The animations done by css-transitions and classes that managed by the
+`Javascript`. All the rest is the basic Rails application._
+
+Cover image attribution: [TwilioCon Hackathon].
+
+[hackathon]: https://en.wikipedia.org/wiki/Hackathon
+[RailsRumble]: https://railsrumble.com/
+[Trello]: http://trello.com/
+[Github]: https://github.com/
+[this blog-post]: (http://kernowsoul.com/blog/2013/10/16/how-to-rumble-like-a-boss/)
+[TwilioCon Hackathon]: (https://www.flickr.com/photos/twilio/6173001512/)
